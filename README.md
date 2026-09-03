@@ -97,11 +97,8 @@ int main(int argc, char *argv[]) {
 
 
 ## OUTPUT
-
-<img width="1450" height="1085" alt="image" src="https://github.com/user-attachments/assets/b34a5b61-0ded-4c7a-9de1-3ba1d272e426" />
-
-
-
-
+![Alt text](<../Screenshot at 2026-09-03 05-50-24.png>)
+![Alt text](<../Screenshot at 2026-09-03 05-51-09.png>)
+![Alt text](<../Screenshot at 2026-09-03 05-51-50.png>)
 # RESULT:
 The programs are executed successfully.
