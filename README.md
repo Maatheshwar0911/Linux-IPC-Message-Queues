@@ -22,8 +22,6 @@ Execute the C Program for the desired output.
 
 ## C program that receives a message from message queue and display them
 ```
-
-// ipcprog.c - Combined Writer/Reader for System V Message Queue
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -44,46 +42,46 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Generate key
     key = ftok("progfile", 65);
     if (key == -1) {
         perror("ftok");
         return 1;
     }
 
-    // Create message queue and return id
     msgid = msgget(key, 0666 | IPC_CREAT);
     if (msgid == -1) {
         perror("msgget");
         return 1;
     }
 
-    // Print msgid for grading script
     printf("Message Queue ID: %d\n", msgid);
 
     if (strcmp(argv[1], "writer") == 0) {
         message.mesg_type = 1;
+
         printf("Enter Message: ");
         fgets(message.mesg_text, sizeof(message.mesg_text), stdin);
-        message.mesg_text[strcspn(message.mesg_text, "\n")] = 0; // remove newline
+        message.mesg_text[strcspn(message.mesg_text, "\n")] = '\0';
 
-        if (msgsnd(msgid, &message, sizeof(message), 0) == -1) {
+        if (msgsnd(msgid, &message, sizeof(message.mesg_text), 0) == -1) {
             perror("msgsnd");
             return 1;
         }
 
         printf("Message sent: %s\n", message.mesg_text);
     }
-    else if (strcmp(argv[1], "reader") == 0) {
-        if (msgrcv(msgid, &message, sizeof(message), 1, 0) == -1) {
+    else if (strcmp(argv[1], "reader") == 0) {s
+        if (msgrcv(msgid, &message, sizeof(message.mesg_text), 1, 0) == -1) {
             perror("msgrcv");
             return 1;
         }
 
         printf("Message received: %s\n", message.mesg_text);
 
-        // Destroy the message queue
-        msgctl(msgid, IPC_RMID, NULL);
+        if (msgctl(msgid, IPC_RMID, NULL) == -1) {
+            perror("msgctl");
+            return 1;
+        }
     }
     else {
         printf("Invalid argument. Use writer or reader.\n");
@@ -91,15 +89,18 @@ int main(int argc, char *argv[]) {
     }
 
     return 0;
-}
-```
+}```
 
 
 
 
 ## OUTPUT
 
-<img width="1450" height="1085" alt="image" src="https://github.com/user-attachments/assets/b34a5b61-0ded-4c7a-9de1-3ba1d272e426" />
+![Alt text](<../Screenshot at 2026-09-03 05-50-24.png>)
+
+![Alt text](<../Screenshot at 2026-09-03 05-51-09.png>)
+
+![Alt text](<../Screenshot at 2026-09-03 05-51-50.png>)
 
 
 
