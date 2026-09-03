@@ -22,6 +22,7 @@ Execute the C Program for the desired output.
 
 ## C program that receives a message from message queue and display them
 ```
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -70,7 +71,7 @@ int main(int argc, char *argv[]) {
 
         printf("Message sent: %s\n", message.mesg_text);
     }
-    else if (strcmp(argv[1], "reader") == 0) {s
+    else if (strcmp(argv[1], "reader") == 0) {
         if (msgrcv(msgid, &message, sizeof(message.mesg_text), 1, 0) == -1) {
             perror("msgrcv");
             return 1;
@@ -89,18 +90,15 @@ int main(int argc, char *argv[]) {
     }
 
     return 0;
-}```
+}
+```
 
 
 
 
 ## OUTPUT
 
-![Alt text](<../Screenshot at 2026-09-03 05-50-24.png>)
-
-![Alt text](<../Screenshot at 2026-09-03 05-51-09.png>)
-
-![Alt text](<../Screenshot at 2026-09-03 05-51-50.png>)
+<img width="1450" height="1085" alt="image" src="https://github.com/user-attachments/assets/b34a5b61-0ded-4c7a-9de1-3ba1d272e426" />
 
 
 
